@@ -474,16 +474,6 @@ select.q-sel.invalid,input.q-inp.invalid{border-color:var(--red);background:var(
     <div class="section-block" style="margin-bottom:1.5rem">
       <div class="contact-grid">
         <div class="q-row">
-          <label class="q-label" for="f-name">Your Name *</label>
-          <input class="q-inp" id="f-name" type="text" placeholder="First & Last Name"/>
-          <div class="field-err" id="err-name">Please enter your name</div>
-        </div>
-        <div class="q-row">
-          <label class="q-label" for="f-email">Email Address *</label>
-          <input class="q-inp" id="f-email" type="email" placeholder="you@yourbrand.com"/>
-          <div class="field-err" id="err-email">Please enter a valid email</div>
-        </div>
-        <div class="q-row">
           <label class="q-label" for="f-brand">Brand or Organization Name *</label>
           <input class="q-inp" id="f-brand" type="text" placeholder="Your brand name"/>
           <div class="field-err" id="err-brand">Please enter your brand name</div>
@@ -881,8 +871,6 @@ window.addEventListener("load", function () {
     if (banner) banner.style.display = "none";
 
     var fields = [
-      { id: "f-name",     err: "err-name",     test: function (v) { return v.trim().length > 1; } },
-      { id: "f-email",    err: "err-email",    test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); } },
       { id: "f-brand",    err: "err-brand",    test: function (v) { return v.trim().length > 1; } }
     ];
 
@@ -1247,8 +1235,6 @@ window.addEventListener("load", function () {
     if (!validate()) return;
 
     var info = {
-      name:     document.getElementById("f-name").value.trim(),
-      email:    document.getElementById("f-email").value.trim(),
       brand:    document.getElementById("f-brand").value.trim(),
       channels: document.getElementById("f-channels").value
     };
