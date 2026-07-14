@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Video Scorecard · Talex Media</title>
+<link rel="icon" type="image/png" sizes="192x192" href="https://static.wixstatic.com/media/3c6878_9a68ae0b3ff84e198fdd43fac493e294~mv2_d_1500_1500_s_2.png/v1/fill/w_192,h_192,lg_1,usm_0.66_1.00_0.01/3c6878_9a68ae0b3ff84e198fdd43fac493e294~mv2_d_1500_1500_s_2.png"/>
+<link rel="shortcut icon" href="https://static.wixstatic.com/media/3c6878_9a68ae0b3ff84e198fdd43fac493e294~mv2_d_1500_1500_s_2.png/v1/fill/w_32,h_32,lg_1,usm_0.66_1.00_0.01/3c6878_9a68ae0b3ff84e198fdd43fac493e294~mv2_d_1500_1500_s_2.png" type="image/png"/>
+<link rel="apple-touch-icon" href="https://static.wixstatic.com/media/3c6878_9a68ae0b3ff84e198fdd43fac493e294~mv2_d_1500_1500_s_2.png/v1/fill/w_180,h_180,lg_1,usm_0.66_1.00_0.01/3c6878_9a68ae0b3ff84e198fdd43fac493e294~mv2_d_1500_1500_s_2.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --o:#E85A0C;
+  --o-dim:rgba(232,90,12,0.08);
+  --o-mid:rgba(232,90,12,0.18);
+  --o-border:rgba(232,90,12,0.28);
+  --bg:#F5F2EC;
+  --surface:#FFFFFF;
+  --surface2:#FAF8F5;
+  --border:#E2DDD6;
+  --border-strong:#C8C2BA;
+  --txt:#1A1816;
+  --txt2:#6B625A;
+  --txt3:#A89E96;
+  --green:#2D8C52;
+  --green-bg:#EDF7F2;
+  --green-border:#A8D9BC;
+  --red:#C0392B;
+  --red-bg:#FDF0EE;
+  --red-border:#E8BEBC;
+  --amber:#B07D10;
+  --amber-bg:#FDF7EC;
+  --amber-border:#E0C880;
+}
+
+html{background:var(--bg);color:var(--txt);font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.6}
+body{background:var(--bg);min-height:100vh}
+#wrap{max-width:700px;margin:0 auto;padding:0 1.25rem 5rem}
+
+/* ── Typography ── */
+.disp{font-family:'Bebas Neue',sans-serif;letter-spacing:0.04em;line-height:1}
+.head{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.02em;line-height:1.1}
+.lbl{font-family:'Oswald',sans-serif;font-weight:500;font-size:11px;letter-spacing:0.14em;text-transform:uppercase}
+.italic{font-family:'EB Garamond',Georgia,serif;font-style:italic}
+
+/* ── Top nav bar ── */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 0;
+  border-bottom:1px solid var(--border);
+  margin-bottom:0;
+}
+.topbar-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.topbar-logo{height:28px;width:auto}
+.topbar-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.08em;color:var(--txt)}
+.topbar-divider{width:1px;height:18px;background:var(--border-strong)}
+.topbar-tool{font-family:'Oswald',sans-serif;font-weight:400;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--txt2)}
+
+/* ── Hero ── */
+.hero{padding:3rem 0 2.5rem;border-bottom:2px solid var(--o)}
+.hero-step{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem}
+.step-pill{
+  background:var(--o);color:#fff;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:3px 10px;border-radius:3px;
+}
+.hero-eyebrow{font-family:'Oswald',sans-serif;font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--txt2)}
+.hero-title{font-size:clamp(40px,8vw,66px);color:var(--txt);margin-bottom:0.5rem}
+.hero-tagline{font-size:clamp(19px,3.5vw,26px);color:var(--o);margin-bottom:1rem}
+.hero-desc{max-width:560px;font-size:14px;color:var(--txt2);line-height:1.8}
+
+/* ── Stat strip ── */
+.stat-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:var(--surface);
+  overflow:hidden;
+  margin:2rem 0;
+}
+.stat-cell{padding:1rem;text-align:center;border-right:1px solid var(--border)}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:0.04em;color:var(--o)}
+.stat-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--txt3);font-family:'Oswald',sans-serif;font-weight:400}
+
+/* ── Callout quote ── */
+.callout{
+  border-left:3px solid var(--o);
+  padding:1rem 1.25rem;
+  background:var(--surface);
+  border-radius:0 8px 8px 0;
+  margin:1.75rem 0;
+}
+.callout p{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:16px;color:var(--txt);line-height:1.75}
+.callout-attr{margin-top:0.6rem;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--o);font-family:'Oswald',sans-serif;font-weight:500}
+
+/* ── Section heading with step label ── */
+.section-step{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:1.5rem;
+  padding-bottom:1.25rem;
+  border-bottom:1px solid var(--border);
+}
+.step-label{
+  display:flex;flex-direction:column;
+}
+.step-eyebrow{font-family:'Oswald',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:1px}
+.step-title{font-family:'Oswald',sans-serif;font-size:20px;font-weight:600;color:var(--txt);letter-spacing:0.02em}
+.step-num-circle{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--o);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:20px;
+  flex-shrink:0;
+}
+.step-num-star{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--txt);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+
+/* ── Section blocks ── */
+.section-block{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1.5rem;
+  margin-bottom:1rem;
+}
+.section-block + .section-block{margin-top:0}
+
+/* ── Questions ── */
+.q-row{margin-top:1.1rem}
+.q-label{display:block;font-size:13.5px;color:var(--txt);margin-bottom:7px;line-height:1.5;font-weight:400}
+.q-hint{font-size:12px;color:var(--txt3);font-style:italic}
+
+select.q-sel,input.q-inp{
+  width:100%;
+  background:var(--surface2);
+  border:1.5px solid var(--border);
+  border-radius:7px;
+  color:var(--txt);
+  font-family:'DM Sans',sans-serif;
+  font-size:13.5px;
+  padding:10px 36px 10px 13px;
+  appearance:none;
+  cursor:pointer;
+  transition:border-color 0.15s,box-shadow 0.15s;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath fill='%23A89E96' d='M7 9.5L2 4.5h10z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 11px center;
+}
+select.q-sel:focus,input.q-inp:focus{
+  outline:none;border-color:var(--o);
+  box-shadow:0 0 0 3px var(--o-dim);
+}
+select.q-sel:hover,input.q-inp:hover{border-color:var(--border-strong)}
+select.q-sel option{background:#fff;color:var(--txt)}
+input.q-inp{background-image:none;padding:10px 13px}
+input.q-inp::placeholder{color:var(--txt3)}
+
+/* ── Contact grid ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.contact-grid{grid-template-columns:1fr}}
+
+/* ── Divider line ── */
+.rule{height:1px;background:var(--border);border:none;margin:1.5rem 0}
+.rule-orange{height:2px;background:var(--o);border:none;margin:2rem 0}
+
+/* ── Question counter ── */
+.q-counter{
+  display:flex;align-items:center;gap:10px;
+  padding:0.75rem 1rem;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:7px;
+  margin-bottom:1.25rem;
+}
+.q-counter-label{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--txt2)}
+.q-counter-dots{display:flex;gap:5px;flex-wrap:wrap}
+.q-dot{width:8px;height:8px;border-radius:50%;background:var(--border-strong);transition:background 0.2s}
+.q-dot.answered{background:var(--o)}
+
+/* ── Validation ── */
+select.q-sel.invalid,input.q-inp.invalid{border-color:var(--red);background:var(--red-bg)}
+.field-err{font-size:11px;color:var(--red);margin-top:4px;display:none}
+.field-err.show{display:block}
+
+/* ── Submit button ── */
+.submit-wrap{margin-top:2rem}
+.btn-submit{
+  width:100%;
+  background:var(--o);color:#fff;border:none;
+  border-radius:8px;padding:16px 32px;
+  font-family:'Oswald',sans-serif;font-weight:600;
+  font-size:17px;letter-spacing:0.1em;text-transform:uppercase;
+  cursor:pointer;transition:background 0.15s,transform 0.1s;
+  display:block;
+}
+.btn-submit:hover{background:#c94d08}
+.btn-submit:active{transform:scale(0.99)}
+.btn-submit:disabled{opacity:0.35;cursor:not-allowed}
+.submit-note{margin-top:8px;font-size:12px;color:var(--txt3);text-align:center}
+
+/* ── Loading ── */
+#loading{display:none;padding:4rem 1rem;text-align:center}
+.loading-ring{
+  width:44px;height:44px;border-radius:50%;
+  border:3px solid var(--border);border-top-color:var(--o);
+  animation:spin 0.85s linear infinite;
+  margin:0 auto 1.5rem;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-msg{font-size:13px;color:var(--txt2);margin-top:0.5rem}
+
+/* ── Report ── */
+#report-wrap{display:none}
+
+/* Score hero */
+.report-topbar{
+  display:flex;align-items:center;gap:10px;
+  padding:1rem 0;
+  border-bottom:2px solid var(--o);
+  margin-bottom:2rem;
+}
+.score-hero-block{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1.75rem;
+  margin-bottom:1.25rem;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:2rem;
+  align-items:center;
+}
+@media(max-width:480px){.score-hero-block{grid-template-columns:1fr}}
+.score-big-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:88px;line-height:1;letter-spacing:0.04em;
+  color:var(--o);
+}
+.score-meta-label{font-size:22px;font-family:'Oswald',sans-serif;font-weight:600;color:var(--txt);margin-bottom:4px}
+.score-meta-sub{font-size:13px;color:var(--txt2);margin-bottom:1rem}
+.score-bar-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:3px;transition:width 1.4s cubic-bezier(.25,.8,.25,1)}
+
+/* Dimension grid */
+.dim-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:8px;margin-bottom:1.5rem;
+}
+@media(max-width:520px){.dim-grid{grid-template-columns:1fr 1fr}}
+.dim-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;padding:0.75rem 0.75rem 0.85rem;
+  text-align:center;
+}
+.dim-score{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:0.04em}
+.dim-name{font-size:10px;color:var(--txt3);line-height:1.35;font-family:'Oswald',sans-serif;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;margin-top:3px}
+
+/* Executive summary */
+.exec-block{
+  border-left:3px solid var(--o);
+  padding:1rem 1.25rem;
+  background:var(--surface);
+  border-radius:0 8px 8px 0;
+  margin-bottom:1.5rem;
+}
+.exec-block p{font-size:14px;line-height:1.8;color:var(--txt2)}
+
+/* Deliverable wrapper */
+.deliverable{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin-bottom:1.25rem;
+  overflow:hidden;
+}
+.del-header{
+  display:flex;align-items:center;gap:12px;
+  padding:1rem 1.4rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface2);
+}
+.del-num{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--o);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:15px;
+  flex-shrink:0;
+}
+.del-title{font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;color:var(--txt);letter-spacing:0.04em}
+.del-body{padding:1.4rem}
+
+/* Gap items */
+.gap-item{
+  display:flex;gap:13px;align-items:flex-start;
+  padding:1rem 0;
+  border-bottom:1px solid var(--border);
+}
+.gap-item:last-child{border-bottom:none;padding-bottom:0}
+.gap-badge{
+  padding:3px 8px;border-radius:4px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:10px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  flex-shrink:0;margin-top:2px;
+  white-space:nowrap;
+}
+.gap-badge.critical{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.gap-badge.moderate{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.gap-badge.strength{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.gap-title{font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;color:var(--txt);margin-bottom:3px;letter-spacing:0.02em}
+.gap-desc{font-size:13px;color:var(--txt2);line-height:1.65}
+.gap-impact{font-size:12.5px;color:var(--txt3);margin-top:4px;font-style:italic}
+
+/* Action steps */
+.action-step{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:1.1rem 0;
+  border-bottom:1px solid var(--border);
+}
+.action-step:last-child{border-bottom:none;padding-bottom:0}
+.action-circle{
+  width:32px;height:32px;border-radius:50%;
+  border:2px solid var(--o);
+  background:var(--o-dim);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:16px;
+  color:var(--o);flex-shrink:0;margin-top:1px;
+}
+.action-phase{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--o);font-family:'Oswald',sans-serif;font-weight:500;margin-bottom:2px}
+.action-title{font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;color:var(--txt);margin-bottom:3px;letter-spacing:0.02em}
+.action-desc{font-size:13px;color:var(--txt2);line-height:1.65}
+
+/* Benefits */
+.benefit-item{
+  border:1px solid var(--border);
+  border-left:3px solid var(--o);
+  background:var(--surface2);
+  border-radius:0 8px 8px 0;
+  padding:1rem 1.1rem;
+  margin-bottom:8px;
+}
+.benefit-title{font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;color:var(--txt);margin-bottom:3px;letter-spacing:0.02em}
+.benefit-desc{font-size:13px;color:var(--txt2);line-height:1.65}
+
+/* CTA block */
+.cta-block{
+  background:var(--txt);
+  border-radius:10px;
+  padding:2.25rem 1.75rem;
+  margin-top:2rem;
+  text-align:center;
+}
+.cta-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(232,90,12,0.9);font-family:'Oswald',sans-serif;font-weight:500;margin-bottom:0.75rem}
+.cta-headline{font-size:clamp(24px,4.5vw,36px);color:#fff;margin-bottom:0.6rem}
+.cta-sub{font-size:13.5px;color:rgba(255,255,255,0.6);line-height:1.75;max-width:460px;margin:0 auto 1.75rem}
+.btn-cta{
+  display:inline-block;
+  background:var(--o);color:#fff;
+  border:none;border-radius:7px;
+  padding:14px 34px;
+  font-family:'Oswald',sans-serif;font-weight:600;
+  font-size:15px;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:background 0.15s,transform 0.1s;
+  margin-bottom:0.75rem;
+}
+.btn-cta:hover{background:#c94d08}
+.btn-cta:active{transform:scale(0.98)}
+.cta-fine{font-size:12px;color:rgba(255,255,255,0.35)}
+
+/* Footer */
+.site-footer{
+  margin-top:3rem;
+  padding:1.5rem 0 1rem;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.08em;color:var(--txt2)}
+.footer-links{display:flex;gap:1.25rem}
+.footer-links a{font-size:12px;color:var(--txt3);text-decoration:none;letter-spacing:0.06em;font-family:'Oswald',sans-serif;text-transform:uppercase}
+.footer-links a:hover{color:var(--o)}
+.footer-copy{font-size:11px;color:var(--txt3);width:100%}
+
+/* Closing quote in report */
+.closing-line{
+  margin-top:1.25rem;padding-top:1.25rem;
+  border-top:1px solid var(--border);
+}
+.closing-line p{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:15px;color:var(--txt2)}
+.closing-attr{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--o);font-family:'Oswald',sans-serif;font-weight:500;margin-top:6px}
+
+/* Score colors */
+.c-great{color:#2D8C52}
+.c-good{color:#2068B0}
+.c-warn{color:#B07D10}
+.c-crit{color:#C0392B}
+</style>
+</head>
+<body>
+<div id="wrap">
+
+  <!-- ── Top nav ── -->
+  <nav class="topbar">
+    <a class="topbar-brand" href="https://www.talexmedia.com" target="_blank">
+      <img class="topbar-logo"
+        src="https://static.wixstatic.com/media/3c6878_456d81e9cdb84e6c8bb3260ebfcc0523~mv2.png"
+        alt="Talex Media"
+        onerror="this.style.display='none'; this.nextSibling.style.display='block'"
+      />
+      <span class="topbar-name" style="display:none">TALEX MEDIA</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="topbar-divider"></div>
+      <span class="topbar-tool lbl">Video Scorecard</span>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <header class="hero">
+    <div class="hero-step">
+      <div class="step-pill">Free Scorecard</div>
+      <span class="hero-eyebrow">Tom Langan · Talex Media · Two-Time Emmy Award Nominee</span>
+    </div>
+    <h1 class="disp hero-title">Is Your Video<br/>Worth Watching?</h1>
+    <div class="italic hero-tagline">A free scorecard for brands that want to be watched, not skipped.</div>
+    <p class="hero-desc">The problem with most brand video is that it's made for the wrong audience. It fails because it was built around the brand instead of the people it is meant to reach. Answer these 10 questions honestly and we will show you where your video is working, where it is losing people, and what to do about it.</p>
+  </header>
+
+  <!-- Stat strip -->
+  <div class="stat-strip">
+    <div class="stat-cell">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Dimensions</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">10</div>
+      <div class="stat-label">Questions</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Deliverables</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>"Video is the single most powerful tool businesses have at their disposal. Period. Video builds relationships, creates deep connections, and engages multiple senses to create lasting memories around your message."</p>
+    <div class="callout-attr">Tom Langan · Legendeering · Founder, Talex Media</div>
+  </div>
+
+  <!-- ══════════ FORM ══════════ -->
+  <form id="audit-form" novalidate onsubmit="return false;">
+
+    <!-- ── Step 01: Client info ── -->
+    <div style="margin-bottom:0.5rem">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.4rem">
+        <span class="step-pill" style="background:var(--txt);font-size:10px">Step 01</span>
+        <span class="lbl" style="color:var(--txt3)">Your Brand</span>
+      </div>
+      <h2 class="head" style="font-size:22px;color:var(--txt);margin-bottom:0.25rem">Tell Us About Your Brand</h2>
+      <p style="font-size:13px;color:var(--txt3)">These details help us personalize your scorecard. All fields marked * are required.</p>
+    </div>
+
+    <div class="section-block" style="margin-bottom:1.5rem">
+      <div class="contact-grid">
+        <div class="q-row">
+          <label class="q-label" for="f-name">Your Name *</label>
+          <input class="q-inp" id="f-name" type="text" placeholder="First & Last Name"/>
+          <div class="field-err" id="err-name">Please enter your name</div>
+        </div>
+        <div class="q-row">
+          <label class="q-label" for="f-email">Email Address *</label>
+          <input class="q-inp" id="f-email" type="email" placeholder="you@yourbrand.com"/>
+          <div class="field-err" id="err-email">Please enter a valid email</div>
+        </div>
+        <div class="q-row">
+          <label class="q-label" for="f-brand">Brand or Organization Name *</label>
+          <input class="q-inp" id="f-brand" type="text" placeholder="Your brand name"/>
+          <div class="field-err" id="err-brand">Please enter your brand name</div>
+        </div>      </div>
+      <div class="q-row" style="margin-top:12px">
+        <label class="q-label" for="f-channels">Where do you post most of your video? <span class="q-hint">(the channel you use most)</span></label>
+        <select class="q-sel" id="f-channels">
+          <option value="">Select a channel…</option>
+          <option>Website</option>
+          <option>YouTube</option>
+          <option>LinkedIn</option>
+          <option>Instagram</option>
+          <option>Facebook</option>
+          <option>TikTok</option>
+          <option>Short-form Video (Reels / Shorts / TikTok)</option>
+          <option>We don't post video regularly yet</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="rule-orange"/>
+
+    <!-- ── Step 02: The Scorecard ── -->
+    <div style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.4rem">
+        <span class="step-pill" style="background:var(--o);font-size:10px">Step 02</span>
+        <span class="lbl" style="color:var(--txt3)">The Scorecard</span>
+      </div>
+      <h2 class="head" style="font-size:22px;color:var(--txt);margin-bottom:0.25rem">Five Dimensions of Video That Gets Watched</h2>
+      <p style="font-size:13px;color:var(--txt3)">Work through each section. Choose the answer that most honestly reflects where you are today - the scorecard only works if the answers are true.</p>
+    </div>
+
+    <!-- Progress dots -->
+    <div class="q-counter" id="q-counter">
+      <span class="q-counter-label">Progress</span>
+      <div class="q-counter-dots" id="q-dots">
+        <!-- 10 dots rendered by JS -->
+      </div>
+      <span id="q-count-txt" class="lbl" style="color:var(--txt3);font-size:10px;margin-left:auto">0 / 10</span>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section-block">
+      <div class="section-step">
+        <div class="step-num-circle">1</div>
+        <div class="step-label">
+          <span class="step-eyebrow">Dimension 01</span>
+          <span class="step-title">Audience Pull</span>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--txt3);margin-bottom:0.25rem;font-style:italic">Video made for everyone gets watched by no one. How well do you actually know the person on the other side of the screen?</p>
+      <div class="q-row">
+        <label class="q-label" for="s1q1">Who is your video actually made for?</label>
+        <select class="q-sel" id="s1q1" data-section="s1" data-w="1">
+          <option value="">Choose the most honest answer…</option>
+          <option value="1">It's about us - our company, our products, our news</option>
+          <option value="2">A broad group: "customers," "the industry," etc.</option>
+          <option value="3">A fairly clear viewer we have in mind</option>
+          <option value="4">A specific person whose interests and questions we know well</option>
+        </select>
+      </div>
+      <div class="q-row">
+        <label class="q-label" for="s1q2">When you create videos, is your primary focus on the viewer?</label>
+        <select class="q-sel" id="s1q2" data-section="s1" data-w="1">
+          <option value="">Choose…</option>
+          <option value="1">Rarely or never - we focus on what we want to say</option>
+          <option value="2">Sometimes, but it's not a habit</option>
+          <option value="3">Usually - it's part of how we work most of the time</option>
+          <option value="4">Always - the viewer's reason to watch comes first</option>
+        </select>
+      </div>    </div>
+
+    <!-- Section 2 -->
+    <div class="section-block">
+      <div class="section-step">
+        <div class="step-num-circle">2</div>
+        <div class="step-label">
+          <span class="step-eyebrow">Dimension 02</span>
+          <span class="step-title">Watchability</span>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--txt3);margin-bottom:0.25rem;font-style:italic">People choose what they watch. A video has a few seconds to prove it is worth the time, or it gets scrolled past.</p>
+      <div class="q-row">
+        <label class="q-label" for="s2q1">Are your videos something people choose to watch for enjoyment? Does your audience ask for more?</label>
+        <select class="q-sel" id="s2q1" data-section="s2" data-w="1">
+          <option value="">Choose…</option>
+          <option value="1">No - they only watch if we send it to them</option>
+          <option value="2">Some watch, but no one asks for more</option>
+          <option value="3">Often watched with real interest, a few ask for more</option>
+          <option value="4">Yes - they watch for enjoyment and ask for the next one</option>
+        </select>
+      </div>
+      <div class="q-row">
+        <label class="q-label" for="s2q2">How do your videos usually start?</label>
+        <select class="q-sel" id="s2q2" data-section="s2" data-w="1">
+          <option value="">Choose…</option>
+          <option value="1">With our logo or an intro animation</option>
+          <option value="2">With a slow setup or an introduction of who we are</option>
+          <option value="3">With a question or a clear promise of what's coming</option>
+          <option value="4">With a hook that grabs you in the first few seconds</option>
+        </select>
+      </div>    </div>
+
+    <!-- Section 3 -->
+    <div class="section-block">
+      <div class="section-step">
+        <div class="step-num-circle">3</div>
+        <div class="step-label">
+          <span class="step-eyebrow">Dimension 03</span>
+          <span class="step-title">Story</span>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--txt3);margin-bottom:0.25rem;font-style:italic">Facts get forgotten. Stories get retold. The brands people remember are the ones that gave them a story worth passing on.</p>
+      <div class="q-row">
+        <label class="q-label" for="s3q1">Do your videos tell a story or just deliver information?</label>
+        <select class="q-sel" id="s3q1" data-section="s3" data-w="1">
+          <option value="">Choose…</option>
+          <option value="1">Information - we explain what we do and how it works</option>
+          <option value="2">Mostly information, with a little story now and then</option>
+          <option value="3">Often a story, depending on the video</option>
+          <option value="4">A real story with a beginning, middle, and end</option>
+        </select>
+      </div>
+      <div class="q-row">
+        <label class="q-label" for="s3q2">Are there returning characters that your audience knows?</label>
+        <select class="q-sel" id="s3q2" data-section="s3" data-w="1">
+          <option value="">Choose…</option>
+          <option value="1">No - it's the brand talking, no recurring faces</option>
+          <option value="2">The same person sometimes appears, but not as a character</option>
+          <option value="3">A few familiar faces show up across our videos</option>
+          <option value="4">Yes - recurring characters our audience knows and follows</option>
+        </select>
+      </div>    </div>
+
+    <!-- Section 4 -->
+    <div class="section-block">
+      <div class="section-step">
+        <div class="step-num-circle">4</div>
+        <div class="step-label">
+          <span class="step-eyebrow">Dimension 04</span>
+          <span class="step-title">Episodic</span>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--txt3);margin-bottom:0.25rem;font-style:italic">A single video is a moment. A series is a habit. Audiences are built by showing up with something they can follow.</p>
+      <div class="q-row">
+        <label class="q-label" for="s4q1">Are your videos one-offs, or part of a returning series?</label>
+        <select class="q-sel" id="s4q1" data-section="s4" data-w="1">
+          <option value="">Choose…</option>
+          <option value="1">Every video is a standalone one-off</option>
+          <option value="2">Mostly one-offs, with a rare follow-up</option>
+          <option value="3">We have one or two ideas we repeat</option>
+          <option value="4">A series with a format we run again and again</option>
+        </select>
+      </div>      <div class="q-row">
+        <label class="q-label" for="s4q3">Are your videos consistent in theme and structure like a TV show?</label>
+        <select class="q-sel" id="s4q3" data-section="s4" data-w="1">
+          <option value="">Choose…</option>
+          <option value="1">No - each one looks and feels different</option>
+          <option value="2">A little - some loose similarities, no real format</option>
+          <option value="3">Mostly - a recognizable format with some drift</option>
+          <option value="4">Yes - consistent theme and structure, like a TV show</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section-block">
+      <div class="section-step">
+        <div class="step-num-circle">5</div>
+        <div class="step-label">
+          <span class="step-eyebrow">Dimension 05</span>
+          <span class="step-title">Presence</span>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--txt3);margin-bottom:0.25rem;font-style:italic">Trust is built by showing up again and again, not by one good video. The audience needs to know you'll be back before they invest their attention.</p>      <div class="q-row">
+        <label class="q-label" for="s5q2">Over the last six months, has your video output been steady, or have there been big gaps?</label>
+        <select class="q-sel" id="s5q2" data-section="s5" data-w="1">
+          <option value="">Choose…</option>
+          <option value="1">Major gaps - weeks or months with nothing</option>
+          <option value="2">More gaps than consistency - harder to keep up than we expected</option>
+          <option value="3">Mostly steady - small gaps but generally on track</option>
+          <option value="4">Very steady - consistent output throughout</option>
+        </select>
+      </div>
+      <div class="q-row">
+        <label class="q-label" for="s5q3">Do you have a documented video plan - audience, formats, and a publishing schedule?</label>
+        <select class="q-sel" id="s5q3" data-section="s5" data-w="1">
+          <option value="">Choose…</option>
+          <option value="1">No - nothing written down; it's all in someone's head</option>
+          <option value="2">Barely - a few ideas noted, but no real plan</option>
+          <option value="3">Partially - some pieces exist but not the full picture</option>
+          <option value="4">Yes - a clear plan, calendar, and process</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="submit-wrap">
+      <div id="validation-banner" style="display:none;background:#FDF0EE;border:1px solid #E8BEBC;border-left:3px solid #C0392B;border-radius:7px;padding:0.85rem 1rem;margin-bottom:1rem;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="color:#C0392B;font-size:16px;flex-shrink:0;">⚠</span>
+          <p style="font-size:13px;color:#8B2520;line-height:1.5;" id="validation-msg">Please complete all required fields and answer all 10 questions before generating your scorecard.</p>
+        </div>
+      </div>
+      <button type="button" class="btn-submit" id="submit-btn" onclick="generateAudit()">Generate My Video Scorecard →</button>
+      <p class="submit-note">Your personalized scorecard appears below immediately. No email confirmation required.</p>
+    </div>
+
+  </form>
+
+  <!-- ══════════ LOADING ══════════ -->
+  <div id="loading">
+    <div class="loading-ring"></div>
+    <div class="head" style="font-size:20px;color:var(--txt);margin-bottom:0.5rem">Scoring your video…</div>
+    <div class="loading-msg" id="loading-msg">Mapping your answers against what makes video get watched</div>
+  </div>
+
+  <!-- ══════════ REPORT ══════════ -->
+  <div id="report-wrap">
+
+    <div class="report-topbar">
+      <div class="step-pill">Your Scorecard</div>
+      <span class="lbl" style="color:var(--txt3);font-size:10px" id="report-meta"></span>
+    </div>
+
+    <!-- Score hero -->
+    <div class="score-hero-block">
+      <div>
+        <div class="lbl" style="color:var(--txt3);font-size:10px;margin-bottom:4px">Overall Score</div>
+        <div class="score-big-num" id="score-num">—</div>
+        <div class="lbl" style="color:var(--txt3);font-size:9px">&nbsp;/ 100</div>
+      </div>
+      <div>
+        <div class="score-meta-label" id="score-label">—</div>
+        <div class="score-meta-sub" id="score-sub">—</div>
+        <div class="score-bar-track">
+          <div class="score-bar-fill" id="score-bar" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dimension mini-scores -->
+    <div class="dim-grid" id="dim-grid"></div>
+
+    <!-- Executive summary -->
+    <div class="exec-block" id="exec-block" style="display:none">
+      <p id="exec-summary"></p>
+    </div>
+
+    <!-- Deliverable 1 -->
+    <div class="deliverable">
+      <div class="del-header">
+        <div class="del-num">1</div>
+        <div class="del-title">Where Your Video Falls Short</div>
+      </div>
+      <div class="del-body" id="gaps-body">
+        <p style="font-size:13px;color:var(--txt3)">Generating your gap analysis…</p>
+      </div>
+    </div>
+
+    <!-- Deliverable 2 -->
+    <div class="deliverable">
+      <div class="del-header">
+        <div class="del-num">2</div>
+        <div class="del-title">How to Fix It - Your Video Game Plan</div>
+      </div>
+      <div class="del-body" id="steps-body">
+        <p style="font-size:13px;color:var(--txt3)">Building your game plan…</p>
+      </div>
+    </div>
+
+    <!-- Deliverable 3 -->
+    <div class="deliverable">
+      <div class="del-header">
+        <div class="del-num">3</div>
+        <div class="del-title">What Changes When Your Video Gets Watched</div>
+      </div>
+      <div class="del-body" id="benefits-body">
+        <p style="font-size:13px;color:var(--txt3)">Calculating expected outcomes…</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <div class="cta-eyebrow">Step 03 · The Next Step</div>
+      <h2 class="disp cta-headline">Let's Talk About Your Video</h2>
+      <p class="cta-sub">This scorecard shows you where your video stands today. A 30-minute call with Tom turns that into a plan, plus a few show ideas built for your brand. No obligation, no pitch. Just straight strategy from 25 years of broadcast and brand storytelling.</p>
+      <a class="btn-cta" href="https://calendly.com/talextom/20-min-discovery-call" target="_blank">Book a Free Discovery Call</a>
+      <div class="cta-fine">30 minutes · Free · No obligation · Tom Langan, Founder, Talex Media</div>
+    </div>
+
+  </div><!-- /report-wrap -->
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <span class="footer-brand">Talex Media</span>
+    <div class="footer-links">
+      <a href="https://www.talexmedia.com" target="_blank">talexmedia.com</a>
+      <a href="https://www.talexmedia.com/legendeering" target="_blank">Legendeering</a>
+      <a href="https://calendly.com/talextom/20-min-discovery-call" target="_blank">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Talex Media LLC. All rights reserved.</div>
+  </footer>
+
+</div><!-- /wrap -->
+
+<!-- html2pdf.js for client-side PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+// ── Submission endpoint (Google Apps Script web app). Shared with the content audit backend for now.
+var AUDIT_SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbz1BULmmf9-pSAX6qHdO6psw4itwagGxurjIoxUhaQFsDpkqOCVEcrQw-oYrRoy_w-p/exec";
+
+// ── Wix height sync
+function poke() {
+  try { window.parent.postMessage({ type: "wix-iframe-height", height: document.documentElement.scrollHeight }, "*"); } catch (e) {}
+}
+
+window.addEventListener("load", function () {
+  new ResizeObserver(poke).observe(document.body);
+
+  // ── Progress dots
+  var dotsWrap = document.getElementById("q-dots");
+  if (dotsWrap) {
+    for (var di = 0; di < 10; di++) {
+      var dot = document.createElement("div");
+      dot.className = "q-dot";
+      dot.id = "dot-" + di;
+      dotsWrap.appendChild(dot);
+    }
+  }
+
+  function updateProgress() {
+    var sels = document.querySelectorAll("select[data-section]");
+    var count = 0;
+    sels.forEach(function (s, i) {
+      var answered = s.value !== "";
+      var d = document.getElementById("dot-" + i);
+      if (d) d.classList.toggle("answered", answered);
+      if (answered) count++;
+    });
+    var ct = document.getElementById("q-count-txt");
+    if (ct) ct.textContent = count + " / 10";
+  }
+
+  document.querySelectorAll("select[data-section]").forEach(function (s) {
+    s.addEventListener("change", updateProgress);
+  });
+
+  // ── Scoring constants
+  var SECT_NAMES = ["Audience Pull", "Watchability", "Story", "Episodic", "Presence"];
+  var SECT_SHORT = ["Audience", "Watchability", "Story", "Episodic", "Presence"];
+
+  // ── Score helpers
+  function sectionScore(vals) {
+    if (!vals.length) return 0;
+    var sum = vals.reduce(function (a, b) { return a + b; }, 0);
+    return Math.round((sum / vals.length) * 25);
+  }
+
+  function scoreInfo(s) {
+    if (s >= 78) return { label: "Built to Be Watched",   sub: "Your video is genuinely made for the audience.",   color: "#2D8C52", bar: "#2D8C52" };
+    if (s >= 60) return { label: "Getting There",         sub: "Solid base - key gaps to close.",                  color: "#2068B0", bar: "#2068B0" };
+    if (s >= 42) return { label: "Not Getting Watched",   sub: "Structural issues limiting your reach.",           color: "#B07D10", bar: "#B07D10" };
+    return              { label: "Built to Be Skipped",   sub: "Big shifts needed - and very fixable.",            color: "#C0392B", bar: "#C0392B" };
+  }
+
+  function dimColor(s) {
+    if (s >= 75) return "#2D8C52";
+    if (s >= 55) return "#B07D10";
+    return "#C0392B";
+  }
+
+  function gapSev(s) {
+    if (s >= 70) return "strength";
+    if (s >= 48) return "moderate";
+    return "critical";
+  }
+
+  // ── Collect answers
+  function collectAnswers() {
+    var sects = ["s1", "s2", "s3", "s4", "s5"];
+    var out = {};
+    sects.forEach(function (s) {
+      var qs = document.querySelectorAll("select[data-section=\"" + s + "\"]");
+      out[s] = Array.from(qs).map(function (q) { return parseInt(q.value) || 0; });
+    });
+    return out;
+  }
+
+  // ── Validate
+  function validate() {
+    var ok = true;
+    var banner = document.getElementById("validation-banner");
+    var bannerMsg = document.getElementById("validation-msg");
+    if (banner) banner.style.display = "none";
+
+    var fields = [
+      { id: "f-name",     err: "err-name",     test: function (v) { return v.trim().length > 1; } },
+      { id: "f-email",    err: "err-email",    test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); } },
+      { id: "f-brand",    err: "err-brand",    test: function (v) { return v.trim().length > 1; } }
+    ];
+
+    fields.forEach(function (r) {
+      var el = document.getElementById(r.id);
+      var er = document.getElementById(r.err);
+      if (el && !r.test(el.value)) {
+        el.classList.add("invalid");
+        if (er) { er.classList.add("show"); }
+        ok = false;
+      } else if (el) {
+        el.classList.remove("invalid");
+        if (er) { er.classList.remove("show"); }
+      }
+    });
+
+    var unanswered = 0;
+    document.querySelectorAll("select[data-section]").forEach(function (sel) {
+      if (!sel.value) { sel.classList.add("invalid"); ok = false; unanswered++; }
+      else { sel.classList.remove("invalid"); }
+    });
+
+    if (!ok && banner && bannerMsg) {
+      if (unanswered > 0) {
+        bannerMsg.textContent = "Please answer all 10 questions - " + unanswered + (unanswered > 1 ? " questions are" : " question is") + " still unanswered (highlighted in red below).";
+      } else {
+        bannerMsg.textContent = "Please complete all required fields (Name, Email, Brand) before generating your scorecard.";
+      }
+      banner.style.display = "block";
+      try { banner.scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e) {}
+    }
+    return ok;
+  }
+
+  // ── Render scores
+  function renderScores(scores) {
+    var overall = Math.round(scores.reduce(function (a, b) { return a + b; }, 0) / scores.length);
+    var si = scoreInfo(overall);
+
+    var el = document.getElementById("score-num");
+    if (el) { el.textContent = overall; el.style.color = si.color; }
+
+    var bar = document.getElementById("score-bar");
+    if (bar) { bar.style.width = overall + "%"; bar.style.background = si.bar; }
+
+    var lbl = document.getElementById("score-label");
+    if (lbl) { lbl.textContent = si.label; lbl.style.color = si.color; }
+
+    var sub = document.getElementById("score-sub");
+    if (sub) sub.textContent = si.sub;
+
+    var grid = document.getElementById("dim-grid");
+    if (grid) {
+      grid.innerHTML = scores.map(function (s, i) {
+        var col = dimColor(s);
+        return "<div class=\"dim-card\"><div class=\"dim-score\" style=\"color:" + col + "\">" + s + "</div><div class=\"dim-name\">" + SECT_SHORT[i] + "</div></div>";
+      }).join("");
+    }
+    return overall;
+  }
+
+  // ── Report content library - keyed by dimension index and score tier
+  var INSIGHTS = [
+    // s1 - Audience Pull
+    {
+      critical: {
+        finding: "Your videos are being made about your company rather than for a specific viewer. When the brand is the starting point, the video answers questions your audience never asked.",
+        impact: "A video made for everyone tends to hold no one. People give a video a few seconds to prove it is for them, and brand-first video rarely passes that test.",
+        action: { phase: "Know Your Viewer", title: "Name the one person each video is for", desc: "Before your next video, write a short description of the single person you are making it for. Not a market segment - one real human, with the questions they ask and the things they care about. Then make the video that person would actually choose to watch. If it would not earn a few minutes of their day, the idea is not ready." }
+      },
+      moderate: {
+        finding: "You have a working sense of who your videos are for, but it is not sharp enough to shape what you make. A general audience leads to general video, and general video is easy to skip.",
+        impact: "The distance between a rough audience idea and a clear one is where most video loses its pull before a camera ever turns on.",
+        action: { phase: "Know Your Viewer", title: "Go one level deeper on your viewer", desc: "Take who you think your audience is and push further. What are they trying to figure out this month? What have they already tried that did not work? What would make them stop scrolling? The clearer that picture gets, the more your video feels like it was made just for them." }
+      },
+      strength: {
+        finding: "You have a clear picture of who your videos are for, and that clarity gives your work a sharper focus than most brands manage.",
+        impact: "Knowing your viewer is the foundation every other part of a video that gets watched is built on. Protect it and keep deepening it.",
+        action: { phase: "Know Your Viewer", title: "Write your viewer down for the whole team", desc: "Put what you know about your viewer on a single page the whole team can use - what they care about, what they ask, what they already watch. Make it the first question for every video idea. Shared knowledge produces more consistent video than knowledge that lives in one person's head." }
+      }
+    },
+    // s2 - Watchability
+    {
+      critical: {
+        finding: "Your videos read as something people are asked to sit through rather than something they choose to watch. They tend to open with a logo or a slow setup and get to the point late.",
+        impact: "Most viewers decide in the first few seconds whether to keep watching. A slow, brand-first open loses them before the message ever arrives.",
+        action: { phase: "Plan the Show", title: "Cut the intro and lead with a hook", desc: "On your next video, delete the logo open and the slow setup. Start with the most interesting moment - a question, a surprising line, a real reaction - in the first five seconds. Earn the next five seconds, then the next. The brand can come once the viewer is in." }
+      },
+      moderate: {
+        finding: "Some of your videos pull people in, but it is not the rule yet. The watchable moments are there, surrounded by stretches that ask for patience.",
+        impact: "Uneven watchability means a few videos land while the rest lose people partway through, and the audience never builds the habit of finishing.",
+        action: { phase: "Plan the Show", title: "Open every video on its strongest moment", desc: "Make a simple rule: the first thing on screen is the most interesting thing you have. Review your last few videos and find where each one actually gets good, then move that moment to the front. The setup almost always belongs later, or not at all." }
+      },
+      strength: {
+        finding: "People watch your videos by choice, and they finish them. That is the hardest thing for any brand to earn with video and one of the most valuable.",
+        impact: "Watch-through is the signal every platform rewards. When people finish your videos, more people get shown them.",
+        action: { phase: "Build the Series", title: "Turn watchability into a repeatable open", desc: "Look at the videos that hold people best and find what they share - a kind of hook, a pace, a tone. Name it, and use it as the standard open for everything you make. What works by instinct gets stronger once you can repeat it on purpose." }
+      }
+    },
+    // s3 - Story
+    {
+      critical: {
+        finding: "Your videos deliver information rather than tell a story. They explain what you do, but they do not put a person and a problem on screen for the audience to follow.",
+        impact: "Facts inform, but stories are what people remember and pass on. A video with no story gives the audience no reason to stay or to share.",
+        action: { phase: "Plan the Show", title: "Build a simple story arc before you shoot", desc: "Before any video, answer three things in writing: who is this about, what problem are they facing, and how does it resolve. Even a ninety-second video works better with this shape. The story does not need to be dramatic. It needs a real person with a real problem." }
+      },
+      moderate: {
+        finding: "Story shows up in some of your videos but it is not the way you build by default. The instinct is there. The habit is not.",
+        impact: "The videos where a story leads almost certainly outperform the ones that just explain. The chance now is to make story the rule instead of the exception.",
+        action: { phase: "Plan the Show", title: "Lead with a person, not a point", desc: "Set a firm rule for how every video opens: a person, a moment, or a situation first - never a fact or a product. The information can follow once the audience cares. Getting that order right is what separates video people watch from video people skip." }
+      },
+      strength: {
+        finding: "Story is clearly working in your videos. When people tell you a video got to them, that is the narrative landing.",
+        impact: "Strong storytelling is the most durable advantage you can have in video. It cannot be copied without the same care behind it.",
+        action: { phase: "Build the Series", title: "Add a moment of tension to every story", desc: "Push your stories further by making sure each one has a clear moment of tension - the point right before something changes. Tension is what keeps people watching. Look at your recent videos and find that moment. If it is missing, build it in next time." }
+      }
+    },
+    // s4 - Episodic
+    {
+      critical: {
+        finding: "Your videos are one-offs. Each one starts from scratch with no format the audience recognizes and no reason to expect another.",
+        impact: "One-off videos ask the audience to start over every time. A series gives them something to follow, and following is how an audience is built.",
+        action: { phase: "Build the Series", title: "Turn your best video into a format", desc: "Take the video that worked best and treat it as episode one. What was the format - the shape, the segments, the kind of guest or question? Name it, and plan the next three episodes in the same mold. A repeatable format is what turns scattered videos into a show people return to." }
+      },
+      moderate: {
+        finding: "You have some repeatable ideas, but most of your video is still made one piece at a time. There is no show with a name the audience can hold onto.",
+        impact: "Without a recognizable series, even good videos stay scattered, and the audience never learns to expect the next one.",
+        action: { phase: "Build the Series", title: "Give your video a name and a shape", desc: "Pick one idea you could make again and again and give it a name, a length, and a simple format. Commit to making it a handful of times. A named show with a familiar shape is far easier for an audience to follow than a stream of unrelated videos." }
+      },
+      strength: {
+        finding: "You think in series, not one-offs. You have a format the audience can recognize and a reason for them to come back.",
+        impact: "A returning series compounds. Each episode makes the next one easier to find and easier to watch.",
+        action: { phase: "Show Up", title: "Lock a release rhythm for the series", desc: "You have the format - now give it a schedule the audience can count on. Decide how often a new episode lands and protect that rhythm. A series people can predict is one they build a habit around." }
+      }
+    },
+    // s5 - Presence
+    {
+      critical: {
+        finding: "Your video goes out rarely and without a rhythm. The audience has no way to know when, or whether, the next one is coming.",
+        impact: "Sporadic video builds sporadic trust. People build habits around whoever shows up reliably, and right now that is not you.",
+        action: { phase: "Show Up", title: "Set the smallest schedule you can keep", desc: "Pick a publishing pace you can hold without straining - not the one you wish for, the one you can actually deliver. One video a month, every month, beats four in January and nothing until spring. Put it in writing and treat it as a promise to the audience." }
+      },
+      moderate: {
+        finding: "You can publish steadily in stretches, but the gaps undo the momentum that consistency is supposed to build.",
+        impact: "Each gap resets part of the attention you earned. The audience does not wait - they move on to whoever keeps showing up.",
+        action: { phase: "Show Up", title: "Plan ninety days of video ahead", desc: "Map the next ninety days of video - topics, formats, and dates - then work backward so nothing gets made at the last minute. A visible calendar shows gaps early, while you can still prevent them." }
+      },
+      strength: {
+        finding: "You show up with video on a rhythm the audience can count on. That reliable presence is one of the most valuable things a brand can build.",
+        impact: "Consistent presence compounds in a way no single great video can. You are already capturing that advantage.",
+        action: { phase: "Show Up", title: "Make every release work harder", desc: "You are publishing reliably - now get more from each one. Pull short clips for social, a quote for email, a highlight for new viewers. Each video should produce a handful of smaller pieces so the work you already did reaches further." }
+      }
+    }
+  ];
+
+  var ACTION_LIBRARY = [
+    {
+      phase: "Know Your Viewer",
+      title: "Name your viewer before your next shoot",
+      desc: "Before any video goes into production, write a single paragraph describing the one person this video is for. Not a target demographic - a real human with specific daily pressures, questions, and goals. Every creative decision that follows should serve that person. If you cannot say what they will walk away with, the idea is not ready."
+    },
+    {
+      phase: "Know Your Viewer",
+      title: "Build a video list from the questions you get asked",
+      desc: "Gather the ten questions your audience asks most - from sales calls, emails, comments, or conversations. Each one is a video episode waiting to happen. This is the most reliable source of video that actually performs, because it starts with what people are already looking for rather than what you want to say."
+    },
+    {
+      phase: "Plan the Show",
+      title: "Write the one thing each video should leave behind",
+      desc: "Before every video goes into production, finish this sentence: 'By the end of this, my viewer will know, feel, or be able to ___.' If you cannot complete it clearly, the idea is not sharp enough to shoot. This one habit will improve the focus of everything you make."
+    },
+    {
+      phase: "Plan the Show",
+      title: "Plan ninety days of video at once",
+      desc: "Map your next ninety days of video - topics, formats, and publish dates. Then work backward to set a production timeline for each one. Planned video is almost always better than rushed video, and a visible calendar makes gaps obvious early, when you can still prevent them."
+    },
+    {
+      phase: "Shoot It Real",
+      title: "Let the camera catch real moments, not performed ones",
+      desc: "Your most effective video will rarely be your most polished one. Give the people on camera permission to speak naturally, stumble, and react honestly. Use a few takes and choose the one that feels most human, not most professional. Audiences can tell the difference, and they trust the real version."
+    },
+    {
+      phase: "Build the Series",
+      title: "Give every video a consistent open and close",
+      desc: "Build a signature opening and closing for your series - a short, recognizable shape the audience starts to anticipate. The open should make clear what they are about to get. The close should land a clear takeaway or point to what comes next. A familiar open and close is one of the fastest ways to build recognition."
+    },
+    {
+      phase: "Build the Series",
+      title: "Turn your best video into a repeatable format",
+      desc: "Take the video that worked best and treat it as episode one of a show. Name the format, define its shape, and plan the next few episodes in the same mold. A repeatable format is what turns a pile of one-off videos into a series people follow - and following is how an audience is built."
+    },
+    {
+      phase: "Show Up",
+      title: "Cut every episode into short clips",
+      desc: "Every long video should produce at least three smaller pieces: a short clip for social, a quote graphic, and a teaser. You have already done the hard creative work - this multiplies its reach without much extra effort. Build the clipping into your process so it happens by default, not as an afterthought."
+    },
+    {
+      phase: "Show Up",
+      title: "Publish where your audience already is",
+      desc: "Look at where your audience actually spends their attention, not where you prefer to post. If your viewers are on YouTube and you are focused elsewhere, the best video in the world is not reaching them. Pick two channels where your audience is active and go deep on both rather than spreading thin across many."
+    }
+  ];
+
+  // ── Build the report from scores
+  function buildReport(info, scores, overall) {
+    var sorted = scores.map(function (s, i) { return { s: s, i: i }; }).sort(function (a, b) { return a.s - b.s; });
+    var lowest = sorted[0];
+    var second = sorted[1];
+    var highest = sorted[sorted.length - 1];
+
+    // Executive summary
+    var perfPhrase;
+    if (overall >= 78) perfPhrase = "is built to be watched - your video is genuinely made for the audience";
+    else if (overall >= 60) perfPhrase = "has a solid base with clear, fixable gaps";
+    else if (overall >= 42) perfPhrase = "is underperforming against what it could do in several areas";
+    else perfPhrase = "has real structural gaps that are holding back how it performs";
+
+    var execSummary = info.brand + "'s video " + perfPhrase + ". The scorecard points to " + SECT_NAMES[lowest.i].toLowerCase() + " as the area most in need of attention - that is where the biggest gains are waiting. The steps below are ordered to tackle the most useful changes first.";
+
+    // Gaps - always 4: top 2 weakest + one moderate + top strength
+    var gaps = [
+      {
+        area: SECT_NAMES[lowest.i],
+        severity: "critical",
+        finding: INSIGHTS[lowest.i][gapSev(lowest.s)].finding,
+        impact: INSIGHTS[lowest.i][gapSev(lowest.s)].impact
+      },
+      {
+        area: SECT_NAMES[second.i],
+        severity: gapSev(second.s) === "strength" ? "moderate" : gapSev(second.s),
+        finding: INSIGHTS[second.i][gapSev(second.s) === "strength" ? "moderate" : gapSev(second.s)].finding,
+        impact: INSIGHTS[second.i][gapSev(second.s) === "strength" ? "moderate" : gapSev(second.s)].impact
+      },
+      {
+        area: SECT_NAMES[sorted[2].i],
+        severity: gapSev(sorted[2].s),
+        finding: INSIGHTS[sorted[2].i][gapSev(sorted[2].s)].finding,
+        impact: INSIGHTS[sorted[2].i][gapSev(sorted[2].s)].impact
+      },
+      {
+        area: SECT_NAMES[highest.i],
+        severity: "strength",
+        finding: INSIGHTS[highest.i]["strength"].finding,
+        impact: INSIGHTS[highest.i]["strength"].impact
+      }
+    ];
+
+    // Action steps - top 2 weakest dimensions drive primary steps + 2 universal steps
+    var steps = [
+      INSIGHTS[lowest.i][gapSev(lowest.s)].action,
+      INSIGHTS[second.i][gapSev(second.s) === "strength" ? "moderate" : gapSev(second.s)].action,
+      ACTION_LIBRARY[6], // Build the Series - turn your best video into a format
+      ACTION_LIBRARY[7]  // Show Up - cut every episode into short clips
+    ];
+
+    // Benefits - tailored to score bands
+    var benefits = [];
+    if (overall < 60) {
+      benefits.push({
+        title: "An audience that comes back",
+        desc: "When video consistently serves the viewer before it serves the brand, people start to return for the next one. A returning audience is the one that eventually buys, refers, and advocates - often without being asked."
+      });
+      benefits.push({
+        title: "Better-qualified leads with less selling",
+        desc: "Video that genuinely helps your ideal customer positions you as the authority before the sales conversation begins. Prospects arrive already warm, because your video did the convincing before any pitch was made."
+      });
+      benefits.push({
+        title: "A video habit your team can keep",
+        desc: "A documented plan with a sustainable rhythm ends the scramble that burns most teams out. With a clear system and a repeatable show, video stops feeling like a chore and starts working as a reliable engine for audience growth."
+      });
+    } else {
+      benefits.push({
+        title: "Stronger watch-through and return viewers",
+        desc: "Video built around real audience value gives people a reason to finish and a reason to come back. Viewers who return are the ones who eventually convert and bring others with them."
+      });
+      benefits.push({
+        title: "More reach without more spend",
+        desc: "Video that connects gets shared, and shared video reaches people you could not have paid to reach. The best-performing video in organic terms is almost always the kind that put story and value ahead of promotion."
+      });
+      benefits.push({
+        title: "Authority that builds over time",
+        desc: "Brands that show up consistently with honest, watchable video build a reputation that paid ads cannot buy. That authority compounds - the longer you hold it, the harder it is for anyone else to claim the same place."
+      });
+    }
+
+    var closingLine = overall >= 60
+      ? "The videos you have already made prove this works. The chance now is to make it a series, keep it consistent, and impossible to miss."
+      : "The gap between where your video is today and where it could be is structural - and structural gaps are always fixable with the right plan in place.";
+
+    return {
+      executiveSummary: execSummary,
+      gaps: gaps,
+      actionSteps: steps,
+      benefits: benefits,
+      closingLine: closingLine
+    };
+  }
+
+  // ── Render report
+  function renderReport(data) {
+    var exec = document.getElementById("exec-summary");
+    var execBlock = document.getElementById("exec-block");
+    if (exec && data.executiveSummary) {
+      exec.textContent = data.executiveSummary;
+      if (execBlock) execBlock.style.display = "block";
+    }
+
+    var gapsBody = document.getElementById("gaps-body");
+    if (gapsBody && data.gaps && data.gaps.length) {
+      gapsBody.innerHTML = data.gaps.map(function (g) {
+        var sev = g.severity;
+        var lbl = sev === "critical" ? "Critical Gap" : sev === "strength" ? "Strength" : "Moderate Gap";
+        return "<div class=\"gap-item\"><div><span class=\"gap-badge " + sev + "\">" + lbl + "</span></div><div><div class=\"gap-title\">" + g.area + "</div><div class=\"gap-desc\">" + g.finding + "</div>" + (g.impact ? "<div class=\"gap-impact\">" + g.impact + "</div>" : "") + "</div></div>";
+      }).join("");
+    }
+
+    var stepsBody = document.getElementById("steps-body");
+    if (stepsBody && data.actionSteps && data.actionSteps.length) {
+      stepsBody.innerHTML = "<p style=\"font-size:13px;color:var(--txt3);margin-bottom:1.25rem;line-height:1.65;font-style:italic\">These steps come from a production process built over decades of broadcast and brand work and used across brands in every sector. Work from the top - the order matters.</p>" +
+        data.actionSteps.map(function (s, i) {
+          return "<div class=\"action-step\"><div class=\"action-circle\">" + (i + 1) + "</div><div><div class=\"action-phase\">" + s.phase + "</div><div class=\"action-title\">" + s.title + "</div><div class=\"action-desc\">" + s.desc + "</div></div></div>";
+        }).join("");
+    }
+
+    var benefitsBody = document.getElementById("benefits-body");
+    if (benefitsBody && data.benefits && data.benefits.length) {
+      benefitsBody.innerHTML = "<p style=\"font-size:13px;color:var(--txt3);margin-bottom:1.25rem;line-height:1.65;font-style:italic\">These are common outcomes for brands that shift from making video about themselves to making video for their audience.</p>" +
+        data.benefits.map(function (b) {
+          return "<div class=\"benefit-item\"><div class=\"benefit-title\">" + b.title + "</div><div class=\"benefit-desc\">" + b.desc + "</div></div>";
+        }).join("") +
+        (data.closingLine ? "<div class=\"closing-line\"><p class=\"italic\">\"" + data.closingLine + "\"</p><div class=\"callout-attr\" style=\"margin-top:6px\">Talex Media &middot; Video Scorecard</div></div>" : "");
+    }
+  }
+
+  // ── Loading messages
+  var loadMsgs = [
+    "Mapping your answers against what makes video get watched...",
+    "Finding where your video is losing people...",
+    "Building your personalized game plan...",
+    "Calculating expected outcomes..."
+  ];
+  var lIdx = 0;
+  var lTimer = null;
+
+  function startLoading() {
+    lIdx = 0;
+    var el = document.getElementById("loading-msg");
+    if (el) el.textContent = loadMsgs[0];
+    lTimer = setInterval(function () {
+      lIdx = (lIdx + 1) % loadMsgs.length;
+      var el = document.getElementById("loading-msg");
+      if (el) el.textContent = loadMsgs[lIdx];
+    }, 1800);
+  }
+
+  function stopLoading() {
+    if (lTimer) { clearInterval(lTimer); lTimer = null; }
+  }
+
+  // ── Main generate function (onclick, not form submit)
+  window.generateAudit = function () {
+    if (!validate()) return;
+
+    var info = {
+      name:     document.getElementById("f-name").value.trim(),
+      email:    document.getElementById("f-email").value.trim(),
+      brand:    document.getElementById("f-brand").value.trim(),
+      channels: document.getElementById("f-channels").value
+    };
+
+    var answers = collectAnswers();
+    var scores = ["s1", "s2", "s3", "s4", "s5"].map(function (s) { return sectionScore(answers[s]); });
+    var overall = renderScores(scores);
+
+    var meta = document.getElementById("report-meta");
+    if (meta) meta.textContent = info.brand + " · " + new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+    var form = document.getElementById("audit-form");
+    var loading = document.getElementById("loading");
+    var reportWrap = document.getElementById("report-wrap");
+
+    if (form) form.style.display = "none";
+    if (loading) loading.style.display = "block";
+    if (reportWrap) reportWrap.style.display = "none";
+
+    startLoading();
+
+    // Short delay to let loading UI render, then build report
+    setTimeout(function () {
+      var reportData = buildReport(info, scores, overall);
+      stopLoading();
+      if (loading) loading.style.display = "none";
+      if (reportWrap) reportWrap.style.display = "block";
+      renderReport(reportData);
+      try { reportWrap.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {}
+      poke();
+
+      // ── Generate PDF from rendered report, then POST everything to the backend
+      setTimeout(function () {
+        generatePdfAndSubmit(info, answers, scores, overall, reportData);
+      }, 400);
+    }, 1800);
+  };
+
+  // ── PDF generation + submission
+  function generatePdfAndSubmit(info, answers, scores, overall, reportData) {
+    if (typeof html2pdf === "undefined") {
+      submitData(info, answers, scores, overall, reportData, null);
+      return;
+    }
+
+    var reportWrap = document.getElementById("report-wrap");
+    if (!reportWrap) {
+      submitData(info, answers, scores, overall, reportData, null);
+      return;
+    }
+
+    // Scroll to top to fix html2canvas capture offset
+    window.scrollTo(0, 0);
+
+    var safeBrand = (info.brand || "report").replace(/[^a-z0-9]+/gi, "-").toLowerCase();
+    var filename = "talex-video-scorecard-" + safeBrand + ".pdf";
+
+    var opt = {
+      margin:       [10, 10, 10, 10],
+      filename:     filename,
+      image:        { type: "jpeg", quality: 0.92 },
+      html2canvas:  { scale: 2, useCORS: true, backgroundColor: "#F5F2EC", scrollY: 0, windowHeight: reportWrap.scrollHeight },
+      jsPDF:        { unit: "mm", format: "a4", orientation: "portrait" },
+      pagebreak:    { mode: ["css", "legacy"] }
+    };
+
+    html2pdf().set(opt).from(reportWrap).toPdf().get("pdf").then(function (pdf) {
+      pdf.save(filename);
+      var pdfBase64 = btoa(pdf.output());
+      submitData(info, answers, scores, overall, reportData, {
+        filename: filename,
+        base64: pdfBase64
+      });
+    }).catch(function (err) {
+      console.error("PDF generation failed", err);
+      submitData(info, answers, scores, overall, reportData, null);
+    });
+  }
+
+  function submitData(info, answers, scores, overall, reportData, pdf) {
+    if (!AUDIT_SUBMIT_ENDPOINT || AUDIT_SUBMIT_ENDPOINT.indexOf("YOUR_DEPLOYMENT_ID") !== -1) {
+      console.warn("AUDIT_SUBMIT_ENDPOINT not configured; skipping backend submission.");
+      return;
+    }
+
+    var payload = {
+      tool: "video-scorecard",
+      submittedAt: new Date().toISOString(),
+      contact: info,
+      answers: answers,
+      scores: {
+        s1: scores[0],
+        s2: scores[1],
+        s3: scores[2],
+        s4: scores[3],
+        s5: scores[4],
+        overall: overall
+      },
+      pdf: pdf
+    };
+
+    // Use hidden form + iframe to bypass CORS issues with Google Apps Script
+    try {
+      var iframe = document.createElement("iframe");
+      iframe.name = "audit-submit-frame";
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+
+      var form = document.createElement("form");
+      form.method = "POST";
+      form.action = AUDIT_SUBMIT_ENDPOINT;
+      form.target = "audit-submit-frame";
+
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "payload";
+      input.value = JSON.stringify(payload);
+      form.appendChild(input);
+
+      document.body.appendChild(form);
+      form.submit();
+      console.log("Submission sent via form POST");
+
+      // Clean up after a delay
+      setTimeout(function () {
+        try { document.body.removeChild(form); } catch (e) {}
+        try { document.body.removeChild(iframe); } catch (e) {}
+      }, 15000);
+    } catch (err) {
+      console.warn("Submission failed", err);
+    }
+  }
+});
+</script>
+</body>
+</html>
