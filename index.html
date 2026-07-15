@@ -783,8 +783,10 @@ select.q-sel.invalid,input.q-inp.invalid{border-color:var(--red);background:var(
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-// ── Submission endpoint (Google Apps Script web app). Shared with the content audit backend for now.
-var AUDIT_SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbz1BULmmf9-pSAX6qHdO6psw4itwagGxurjIoxUhaQFsDpkqOCVEcrQw-oYrRoy_w-p/exec";
+// ── Submission endpoint intentionally disabled. The scorecard delivers value in-browser
+//    (on-screen report + PDF download) and does NOT post to any backend. The old value pointed
+//    at the content-audit Apps Script, a different tool; leaving it empty stops that submission.
+var AUDIT_SUBMIT_ENDPOINT = "";
 
 // ── Wix height sync
 function poke() {
